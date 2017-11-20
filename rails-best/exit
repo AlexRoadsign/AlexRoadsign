@@ -1,0 +1,33 @@
+[0G[1] pry(main)> [K[1] pry(main)> bbbbuu
+[1] pry(main)> ^Cexizecjzoecnzocn
+SyntaxError: (eval):2: Invalid char `\x03' in expression
+[1] pry(main)> 
+[2] pry(main)> ^Cexizecjzoecnzocn[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit[K[K[2] pry(main)> exit
+[2] pry(main)> 
+[3] pry(main)> 
+[4] pry(main)> ''Error: Input/output error - read
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:199:in `readline'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:199:in `block in input_readline'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/input_lock.rb:115:in `interruptible_region'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:198:in `input_readline'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:184:in `block in read_line'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:129:in `handle_read_errors'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:170:in `read_line'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:98:in `read'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:68:in `block in repl'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:67:in `loop'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:67:in `repl'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:38:in `block in start'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/input_lock.rb:61:in `__with_ownership'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/input_lock.rb:79:in `with_ownership'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:38:in `start'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/repl.rb:13:in `start'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-0.11.3/lib/pry/pry_class.rb:192:in `start'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/gems/2.3.0/gems/pry-byebug-3.5.0/lib/pry-byebug/pry_ext.rb:11:in `start_with_pry_byebug'
+/home/alexandrep/.irbrc:8:in `<top (required)>'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/2.3.0/irb/init.rb:231:in `load'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/2.3.0/irb/init.rb:231:in `run_config'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/2.3.0/irb/init.rb:20:in `setup'
+/home/alexandrep/.rbenv/versions/2.3.5/lib/ruby/2.3.0/irb.rb:378:in `start'
+/home/alexandrep/.rbenv/versions/2.3.5/bin/irb:11:in `<main>'
+[4] pry(main)> 
