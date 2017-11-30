@@ -1,0 +1,225 @@
+<style>
+  .sake-info {
+    margin: 0 auto;
+    margin-top: 0;
+    padding-top: 0;
+    text-align: center;
+  }
+  .sake-info > h3 {
+    text-align: center;
+    margin: 7px 0;
+  }
+  .sake-info > h5 {
+    text-align: center;
+    font-weight: normal;
+    margin: 0;
+  }
+  .chart-content {
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 5px;
+    height: 400px;
+    border: solid 2px rgba(244, 66, 66, 0.5);
+    opacity: 0.7;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(244, 66, 66, 0.3);
+  }
+  .back-to-show {
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 50px;
+    border: solid 2px rgba(244, 66, 66, 0.5);
+  }
+  .back-btn {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  .back-btn > a:link {
+    text-decoration: none;
+    color: rgba(0,0,0,0.4);
+  }
+  .back-btn > a:link:hover {
+    box-shadow: 2px 2px 5px rgba(244, 66, 66, 0.1);
+  }
+  .compare-image {
+    width: 50px;
+    height: auto;
+  }
+  .compare-small {
+    width: 100px;
+    height: 150px;
+  }
+  .sake-info > .row > .col-xs-4 > h4 {
+    margin-top: 50px;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="sake-info">
+        <div class="row">
+          <div class="col-xs-4">
+            <% if @sake1.name == "Chikuha Noto Junmai" %>
+              <%= link_to image_tag(@sake1.image_url, class: "compare-small"), nihonshu_path(@sake1) %>
+            <% else %>
+              <%= link_to image_tag(@sake1.image_url, class: "compare-image"), nihonshu_path(@sake1) %>
+            <% end %>
+          </div>
+          <div class="col-xs-4">
+            <h4>vs.</h4>
+          </div>
+          <div class="col-xs-4">
+            <%= link_to image_tag(@sake2.image_url, class: "compare-image"), nihonshu_path(@sake2) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="chart-content">
+        <canvas id="myChart" style="width: 100%; height: 100%;"></canvas>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="back-btn">
+        <%= link_to "Sake #1", nihonshu_path(@sake1), class: "back-to-show" %>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="back-btn">
+        <%= link_to "Sake #2", nihonshu_path(@sake2), class: "back-to-show" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+<script>
+  // import Chart from 'chart.js';
+  Chart.defaults.global.responsive = false;
+  // FIREFOX DOESNT WORK WITH ES6 THATS WHY I USED VAR INSTEAD OF CONST OR LET HERE
+  Chart.defaults.global.maintainAspectRatio = false;
+
+  if (<%= @sake1.price.to_i %> > 1000) {
+    var price1 = (<%= @sake1.price.to_i %> / 1000);
+  } else if (<%= @sake1.price.to_i %> > 100) {
+    var price1 = (<%= @sake1.price.to_i %> / 100);
+  } else if (<%= @sake1.price.to_i %> > 20) {
+    var price1 = (<%= @sake1.price.to_i %> / 10);
+  } else {
+    var price1 = <%= @sake1.price.to_i %>;
+  }
+
+  if (<%= @sake2.price.to_i %> > 1000) {
+    var price2 = (<%= @sake2.price.to_i %> / 1000);
+  } else if (<%= @sake2.price.to_i %> > 100) {
+    var price2 = (<%= @sake2.price.to_i %> / 100);
+  } else if (<%= @sake2.price.to_i %> > 20) {
+    var price2 = (<%= @sake2.price.to_i %> / 10);
+  } else {
+    var price2 = <%= @sake2.price.to_i %>;
+  }
+
+  const ctx = document.querySelector("#myChart");
+
+  const data = {
+    labels: ["price", "rating", "dryness"],
+    datasets: [
+      {
+        label: "<%= @sake1.name %>",
+        backgroundColor: "blue",
+        data: [price1, <%= @rating1 %>, <%= @sake1.taste %>]
+      },
+      {
+        label: "<%= @sake2.name %>",
+        backgroundColor: "red",
+        data: [price2, <%= @rating2 %>, <%= @sake2.taste %>]
+      }
+    ]
+  };
+
+
+
+  const myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: data,
+    options: {
+      animation: {
+        duration: 2000,
+        easing: 'easeInOutExpo'
+      },
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          categoryPercentage: 0.8,
+          barPercentage: 0.7,
+          ticks: {
+            min: 0
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+
+  // const myChart = new Chart(ctx, {
+  //     type: 'bar',
+  //     data: {
+  //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  //         datasets: [{
+  //             label: '# of Votes',
+  //             data: [12, 19, 3, 5, 2, 3],
+  //             backgroundColor: [
+  //                 'rgba(255, 99, 132, 0.2)',
+  //                 'rgba(54, 162, 235, 0.2)',
+  //                 'rgba(255, 206, 86, 0.2)',
+  //                 'rgba(75, 192, 192, 0.2)',
+  //                 'rgba(153, 102, 255, 0.2)',
+  //                 'rgba(255, 159, 64, 0.2)'
+  //             ],
+  //             borderColor: [
+  //                 'rgba(255,99,132,1)',
+  //                 'rgba(54, 162, 235, 1)',
+  //                 'rgba(255, 206, 86, 1)',
+  //                 'rgba(75, 192, 192, 1)',
+  //                 'rgba(153, 102, 255, 1)',
+  //                 'rgba(255, 159, 64, 1)'
+  //             ],
+  //             borderWidth: 1,
+  //         }]
+  //     },
+  //     options: {
+  //         scales: {
+  //             yAxes: [{
+  //                 ticks: {
+  //                     beginAtZero:true
+  //                 }
+  //             }]
+  //         }
+  //     }
+  // });
+</script>
